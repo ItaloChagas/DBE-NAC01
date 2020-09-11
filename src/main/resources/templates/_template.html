@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:fragment="head">
+	<meta charset="UTF-8">
+	<title>Epic Task</title>
+	<link rel="stylesheet" type="text/css" th:href="@{~/global.css}">
+</head>
+<body>
+
+	<nav th:fragment="menu">
+		<ul>
+			<li><a href="/task" th:text="#{menu.task}">Tarefas</a></li>
+			<li><a href="#" th:text="#{menu.task}">Concluídos</a></li>
+			<li><a href="/user" class="active">Equipe</a></li>
+		</ul>
+	</nav>
+
+</body>
+</html>
