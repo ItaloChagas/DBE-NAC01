@@ -8,6 +8,30 @@
 
 	<nav th:include="_template :: menu"></nav>
 
+<a href="/task/new" class="btn-sm btn-primary">
+		<span class="material-icons">add</span>
+</a>
+	
+<div class="content">
+	<div class="task" th:each="task : ${tasks}">		
+		<div class="task-info">
+			<h4 th:text="${task.title}"></h4>
+			<p th:text="${task.id}"></p>
+			<p th:text="${task.description}"></p>
+			<p th:text="${task.point}"></p>
+			<p th:text="${task.status}"></p>
+			
+			<div class="task-action">
+			<a th:href="@{/task/new/{id}(id=${task.id})}">
+				<span class="material-icons yellow">create</span>
+			</a>			
+		</div>
+		</div>
+		
+	</div>
+	
+		
+</div>
 
 </body>
 </html>

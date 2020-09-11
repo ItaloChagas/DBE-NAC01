@@ -43,5 +43,7 @@ public class UserController {
 		redirect.addFlashAttribute("message", "Usuario cadastrado com sucesso.");		
 		return "redirect:/user/new";
 	}
+	
+ 
 
 }
