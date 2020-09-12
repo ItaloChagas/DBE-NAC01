@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:include="_template :: head"></head>
+
+<body>
+
+<div class="content">
+
+<span class="alert" th:if="${message != null}" th:text="${message}"> </span>
+
+	<h1>Nova Tarefa</h1>
+	
+	<form action="/task" method="POST" th:object="${task}">
+		<input 
+			name="title" 
+			placeholder="Titulo" 
+			type="text"
+			th:classappend="${#fields.hasErrors('title')} ? invalid"
+		/>
+		<span th:errors="*{title}"></span>
+
+		<input 
+			name="description" 
+			placeholder="Descrição" 
+			type="text" 
+			th:classappend="${#fields.hasErrors('description')} ? invalid"
+		/>
+		<span th:errors="*{description}"></span>
+
+		<input 
+			name="point" 
+			placeholder="Pontos" 
+			type="text" 
+			th:classappend="${#fields.hasErrors('point')} ? invalid"
+		/>			
+		<span th:errors="*{point}"></span>
+		
+		<input 
+			name="status" 
+			placeholder="Status" 
+			type="text" 
+			th:classappend="${#fields.hasErrors('status')} ? invalid"
+		/>
+		<span th:errors="*{status}"></span>
+
+		<div class="actions">
+			<a href="/task" class="btn">cancelar</a>
+			<button class="btn blue">gravar</button>
+		</div>
+	</form>
+</div>
+
+
+</body>
+</html>

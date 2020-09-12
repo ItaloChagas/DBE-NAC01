@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity(name = "tasks")
 public class Task {
 
@@ -20,10 +22,10 @@ public class Task {
 	@Size(max = 140, message = "A descrição precisa ser mais objetiva")
 	private String description;
 	
-	@Size(min= 1, max = 100, message = "Pontuação precisar ser entre 1 e 100")	
+	//@Length(min= 1, max = 100, message = "Pontuação precisar ser entre 1 e 100")	
 	private int point;
 	
-	@Size(min= 1, max = 100, message = "Status precisar ser entre 1 e 100")
+	//@Length(min= 1, max = 100, message = "Status precisar ser entre 1 e 100")
 	private int status;
 	
 	
