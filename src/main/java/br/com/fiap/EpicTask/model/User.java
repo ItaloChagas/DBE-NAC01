@@ -17,14 +17,26 @@ public class User {
 	@NotBlank(message = "{user.name.blank}")
 	private String name;
 	
-	@NotBlank (message = "o e-mail é obrigatório")
-	@Email(message = "e-mail inválido")
+	@NotBlank (message = "{user.email.blank}")
+	@Email(message = "{user.email.pattern}")
 	private String email;
 	
-	@Size(min = 8, message = "a senha deve ter pelo menos 8 caracteres")
+	@Size(min = 8, message = "{user.password.size}")
 	private String pass;
 	
+	@NotBlank (message = "{user.github.blank}")
+	private String gitHubUser;
 	
+	public String getAvatar() {
+		return "https://avatars.githubusercontent.com/" + gitHubUser;
+	}
+	
+	public String getGitHubUser() {
+		return gitHubUser;
+	}
+	public void setGitHubUser(String gitHubUser) {
+		this.gitHubUser = gitHubUser;
+	}
 	public Long getId() {
 		return id;
 	}

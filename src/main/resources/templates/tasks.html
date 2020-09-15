@@ -6,28 +6,66 @@
 <body>
 	<h1>Epic Task</h1>
 
-	<nav th:include="_template :: menu"></nav>
 
-<a href="/task/new" class="btn-sm btn-primary">
-		<span class="material-icons">add</span>
-</a>
+	<nav th:include="_template :: menu('task')"></nav>
+
+	<a href="/task/new" class="btn-sm btn-primary"> <span
+		class="material-icons">add</span>
+	</a>
 	
+	
+
 <div class="content">
-	<div class="task" th:each="task : ${tasks}">		
-		<div class="task-info">
-			<h4 th:text="${task.title}"></h4>			
-			<p th:text="${task.description}"></p>
-			<p th:text="${task.point}"></p>
-			<p th:text="${task.status}"></p>					
-		</div>
-		<div class="task-action">
+
+	<span class="alert" th:if="${message != null}" th:text="${message}"></span>
+
+	<div class="tasks">
+	
+		<div class="card-task" th:each="task : ${tasks}">
+			<div class="task-info">
+
+				<h2 th:text="${task.title}"></h2>
+
+				<div class="point">
+					<span class="material-icons">star</span> <span
+						th:text="${task.description}"></span>
+				</div>
+
+				<div class="status">
+					<svg>
+					<circle cx="70" cy="70" r="70"></circle>
+					<circle cx="70" cy="70" r="70"
+							style="stroke-dashoffset: calc(440 - (440 * 50 )/100 ) "></circle>
+				</svg>
+					<div class="number">
+						<h2 th:text="${task.status}"></h2>
+					</div>
+				</div>
+			</div>
+
+
+			<button class="btn-hand">
+				<span class="material-icons">pan_tool</span>
+			</button>
+			<a class="btn btn-sm yellow"
+				th:href="@{/task/edit/{id}(id=${task.id})}"> <span
+				class="material-icons">create</span>
+			</a>
+
+
+			<!-- <div class="task-action">
 		<a th:href="@{/task/edit/{id}(id=${task.id})}">
 			<span class="material-icons yellow">create</span>
 		</a>			
+		<a th:href="@{/task/delete/{id}(id=${task.id})}">
+			<span class="material-icons red">delete</span>
+		</a>
+		</div> -->
+
 		</div>
-		
-	</div>			
+	</div>
 </div>
+	
 
 </body>
 </html>

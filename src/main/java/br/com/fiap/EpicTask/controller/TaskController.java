@@ -1,11 +1,12 @@
 package br.com.fiap.EpicTask.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,9 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fiap.EpicTask.model.Task;
-import br.com.fiap.EpicTask.model.User;
 import br.com.fiap.EpicTask.repository.TaskRepository;
-
 
 @Controller
 @RequestMapping("/task")
@@ -27,6 +26,9 @@ public class TaskController {
 
 	@Autowired
 	private TaskRepository repository;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	
 	@GetMapping()
@@ -68,5 +70,15 @@ public class TaskController {
         
     }
 	
+	@GetMapping("/delete/{id}")
+	public String deleteTask(@PathVariable Long id, RedirectAttributes redirect) {
+		repository.deleteById(id);
+		redirect.addFlashAttribute("message", getMessage("message.deletetask.success"));
+		return "redirect:/task";
+	}
+	
+	private String getMessage(String code) {
+		return messageSource.getMessage(code, null, LocaleContextHolder.getLocale());
+	}
 	
 }
